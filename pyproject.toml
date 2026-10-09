@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wheat-disease-classifier"
+version = "0.1.0"
+description = "ResNet50-based wheat leaf disease classifier - inference core"
+authors = [{name = "Alikhan Dochshanov", email = "doshchanov_alikhan@mail.ru"}]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.11"
+keywords = ["wheat", "disease", "classification", "resnet50", "cnn"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "torch>=2.1",
+    "torchvision>=0.16",
+    "Pillow>=10.0",
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "flake8>=6.1"]
+
+[project.scripts]
+wheat-classifier = "wheat_classifier.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["wheat_classifier*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-v"
