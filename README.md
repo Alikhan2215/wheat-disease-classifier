@@ -125,6 +125,20 @@ flake8 wheat_classifier tests
 
 ---
 
+## CI/CD
+
+The GitHub Actions workflow (`.github/workflows/ci.yml`) runs in two stages:
+
+1. **Continuous integration (`test` job).** On every push and pull request,
+   the code is linted with `flake8` and the full `pytest` suite is run on
+   Python 3.11.
+2. **Continuous delivery (`build` job).** On push to `main`, and only after
+   the `test` job passes, the package is built with `python -m build` and the
+   resulting wheel and source distribution from `dist/` are uploaded as a
+   workflow artifact, ready to download or publish.
+
+---
+
 ## Limitations
 
 - **Demo mode** (no `--model` flag) uses a randomly initialised ResNet50.
