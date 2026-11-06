@@ -16,6 +16,8 @@ COPY --from=docker:cli /usr/local/bin/docker /usr/local/bin/docker
 # Create Python virtual environment
 RUN python3 -m venv /opt/venv
 
+RUN chown -R jenkins:jenkins /opt/venv
+
 ENV PATH="/opt/venv/bin:${PATH}"
 
 USER jenkins
